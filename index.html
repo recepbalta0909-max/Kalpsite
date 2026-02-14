@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Büyük Kalp Efekt</title>
+
+<style>
+body{
+  margin:0;
+  background:black;
+  overflow:hidden;
+  color:white;
+  font-family:Arial;
+  text-align:center;
+}
+
+/* Dikey tutarsa uyarı */
+@media (orientation:portrait){
+  body::before{
+    content:"Telefonuu Çevirrr güzeliimmm🎀";
+    position:fixed;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:black;
+    color:white;
+    z-index:999;
+    font-size:22px;
+  }
+}
+
+/* Köşe çizgiler */
+.corner{
+  position:fixed;
+  width:220px;
+  height:220px;
+}
+
+.corner .h,.corner .v{
+  position:absolute;
+  background:linear-gradient(90deg, red,yellow,lime,cyan,blue,magenta);
+  animation:hue 4s linear infinite;
+}
+
+.corner .h{height:3px;width:100%;}
+.corner .v{width:3px;height:100%;}
+
+.tl{top:0;left:0;}
+.tr{top:0;right:0;transform:scaleX(-1);}
+.bl{bottom:0;left:0;transform:scaleY(-1);}
+.br{bottom:0;right:0;transform:scale(-1);}
+
+@keyframes hue{
+  from{filter:hue-rotate(0deg);}
+  to{filter:hue-rotate(360deg);}
+}
+
+/* Kalp alanı — BÜYÜTÜLDÜ */
+.heartBox{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:420px;
+  max-width:80vw;
+}
+
+svg{
+  width:100%;
+}
+
+/* sınır çizgi anim */
+.strokeAnim{
+  stroke-dasharray: 900;
+  stroke-dashoffset: 900;
+  animation: draw 4s linear infinite;
+}
+
+@keyframes draw{
+  to{ stroke-dashoffset: 0; }
+}
+
+/* kelebek */
+.butterfly{
+  position:absolute;
+  animation:fly linear infinite;
+}
+
+@keyframes fly{
+  from{ transform:translateY(110vh); }
+  to{ transform:translateY(-10vh); }
+}
+
+h2{
+  margin-top:18px;
+  position:relative;
+  z-index:5;
+}
+</style>
+</head>
+
+<body>
+
+<div class="corner tl"><div class="h"></div><div class="v"></div></div>
+<div class="corner tr"><div class="h"></div><div class="v"></div></div>
+<div class="corner bl"><div class="h"></div><div class="v"></div></div>
+<div class="corner br"><div class="h"></div><div class="v"></div></div>
+
+<h2>İyiki hayatımdasın seni çok seviyorum seni tanıdığım için ve hayatımda olduğun için çok şanslıyım iyiki varsin iyiki seni tanımışım güzelimm🤍 </h2>
+
+<div class="heartBox">
+
+<svg viewBox="0 0 512 512">
+
+<!-- PEMBE BÜYÜK KALP -->
+<path d="M256 464s-176-108-176-232a104 104 0 0 1 176-72
+a104 104 0 0 1 176 72c0 124-176 232-176 232z"
+fill="pink"/>
+
+<!-- Kalp sınırında dönen renk -->
+<defs>
+  <linearGradient id="g" gradientUnits="userSpaceOnUse">
+    <stop offset="0%" stop-color="red"/>
+    <stop offset="25%" stop-color="yellow"/>
+    <stop offset="50%" stop-color="lime"/>
+    <stop offset="75%" stop-color="cyan"/>
+    <stop offset="100%" stop-color="magenta"/>
+    <animateTransform
+      attributeName="gradientTransform"
+      type="rotate"
+      from="0 256 256"
+      to="360 256 256"
+      dur="3s"
+      repeatCount="indefinite"/>
+  </linearGradient>
+</defs>
+
+<path d="M256 464s-176-108-176-232a104 104 0 0 1 176-72
+a104 104 0 0 1 176 72c0 124-176 232-176 232z"
+fill="none"
+stroke="url(#g)"
+stroke-width="10"
+class="strokeAnim"/>
+
+</svg>
+</div>
+
+<script>
+for(let i=0;i<28;i++){
+  let b=document.createElement("div");
+  b.className="butterfly";
+  b.innerHTML="🤍❤️‍🔥";
+  b.style.left=Math.random()*100+"vw";
+  b.style.fontSize=(18+Math.random()*24)+"px";
+  b.style.animationDuration=(6+Math.random()*6)+"s";
+  document.body.appendChild(b);
+}
+</script>
+
+</body>
+</html>
